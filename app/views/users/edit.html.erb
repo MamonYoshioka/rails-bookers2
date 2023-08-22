@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-8">
+      <h2>User Info</h2>
+      <!--varidation-->
+      <% if @user.errors.any? %>
+        <%= @user.errors.count %>error prohibited this obj from being saved:
+          <% @user.errors.full_messages.each do |message|%>
+            <ul>
+              <li><%= message %></li>
+            </ul>
+            <br>
+          <% end %>
+      <% end %>
+
+      <%= form_with model:@user do |form| %>
+          <div class="form-group">
+            <label for="inputName">Name</label><br>
+            <%= form.text_field :name, autofocus: true, id:"inputName", placeholder:"名前"%>
+          </div>
+
+          <div class="form-group">
+            <label for="inputImage">ProfileImage</label><br>
+            <%= form.file_field :profile_image, placeholder: "プロフィール画像", accept: "image/*" %>
+          </div>
+          <div class="form-group">
+            <label for="introdaction">Introduction</label><br>
+            <%= form.text_area :comment %>
+          </div>
+
+          <div class="form-group">
+            <%= form.submit %>
+          </div>
+    　<% end %>
+    </div>
+  </div>
+</div>
