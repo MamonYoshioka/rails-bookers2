@@ -7,9 +7,8 @@
     <%= csp_meta_tag %>
 
     <script src="https://kit.fontawesome.com/97b01a7c97.js" crossorigin="anonymous"></script>
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <!--最後に実装する-->
-    <%#= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <!--実装変更-->
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
@@ -55,20 +54,27 @@
               <% else %>
                 <!--Home画面の表示-->
                 <li class="nav-link text-light">
-                  <%= link_to 'Home' %>
+                  <%= link_to  root_path  do %>
+                    <i class="fa-solid fa-house" style="color: #fff;"></i> Home
+                  <% end %>
                 </li>
 
                 <!--About画面の表示-->
                 <li class="nav-link text-light">
-                  <%= link_to 'About', about_path%>
+                  <%= link_to about_path do %>
+                    <i class="fa-solid fa-link" style="color: #fff"></i> About
+                  <% end %>
+
+                  <li class="nav-link text-light">
+                  <%= link_to  new_user_registration_path do %>
+                    <i class="fa-solid fa-user-plus" style="color: #fff"></i> 新規登録
+                  <% end %>
                 </li>
 
                 <li class="nav-link text-light">
-                  <%= link_to 'ログイン', new_user_session_path %>
-                </li>
-
-                <li class="nav-link text-light">
-                  <%= link_to '新規登録', new_user_registration_path %>
+                  <%= link_to new_user_session_path do%>
+                    <i class="fa-solid fa-right-to-bracket" style="color: #fff"></i> Log in
+                  <% end %>
                 </li>
               <% end %>
             </ul>
@@ -83,6 +89,16 @@
         <%= yield %>
       </div>
     </main>
+
+    <footer>
+      <div class="container mt-5">
+        <div class="row">
+          <div class="mx-auto">
+            <p>CopyRight Infratop.inc</p>
+          </div>
+        </div>
+      </div>
+    </footer>
 
   </body>
 </html>
