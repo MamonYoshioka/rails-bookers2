@@ -1,4 +1,6 @@
 class BooksController < ApplicationController
+  before_action :is_matching_login_user_book, only: [:edit, :update]
+
   # 新規登録画面
   def new
   end
@@ -35,6 +37,7 @@ class BooksController < ApplicationController
   def update
     @book = Book.find(params[:id])
     if @book.update(book_params)
+      flash[:notice] = "You have updated book successfully."
       redirect_to @book
     else
       render :edit
@@ -53,4 +56,12 @@ class BooksController < ApplicationController
   def book_params
     params.require(:book).permit(:image, :title, :body)
   end
+
+ def is_matching_login_user_book
+    book = Book.find(params[:id])
+    unless book.user_id == current_user.id
+      redirect_to books_path
+    end
+ end
+
 end

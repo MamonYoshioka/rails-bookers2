@@ -11,8 +11,14 @@
       </tr>
       <tr>
         <th>introdaction</th>
-        <td></td>
+        <td><%= user.introduction %></td>
       </tr>
     </tbody>
   </table>
+</div>
+
+<div class="row">
+  <%= link_to  edit_user_path(user), class: "btn btn-outline-secondary btn-block" do %>
+    <i class="fa-solid fa-user-cog">プロフィール編集</i>
+  <% end %>
 </div>

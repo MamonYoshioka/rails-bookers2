@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-sm-12 col-md-8">
+    <div class="col-sm-12 col-md-8 col-lg-5 mx-auto">
       <h2>User Info</h2>
       <!--varidation-->
       <% if @user.errors.any? %>
@@ -25,11 +25,11 @@
           </div>
           <div class="form-group">
             <label for="introdaction">Introduction</label><br>
-            <%= form.text_area :comment %>
+            <%= form.text_area :introduction %>
           </div>
 
           <div class="form-group">
-            <%= form.submit %>
+            <%= form.submit 'Update User', class: 'btn btn-secondary' %>
           </div>
     　<% end %>
     </div>

@@ -4,24 +4,19 @@
       <!--ユーザーの詳細画面-->
       <%= render 'user_info', user: @user %>
 
-      <div class="row">
-        <%= link_to  edit_user_path, class: "btn btn-outline-secondary btn-block" do %>
-          <i class="fa-solid fa-user-pen">プロフィール編集</i>
-        <% end %>
-      </div>
-
       <!--新規投稿画面-->
       <h2 class="mt-3">New book</h2>
       　<%= render 'books/form', book: @book %>
     </div>
 
-    <div class="col-md-8">
+    <div class="col-md-8 offset-md-1">
       <!--ユーザーが投稿した内容の一覧-->
       <h2>Books</h2>
 
       <table class="table table-hover table-inverse">
         <thead>
           <tr>
+            <th></th>
             <th>Title</th>
             <th>Opinion</th>
           </tr>
@@ -30,6 +25,11 @@
         <% @user.books.each do |book|%>
         <tbody>
           <tr>
+            <td>
+              <%= link_to user_path(book.user_id) do %>
+                <%= image_tag book.user.get_profile_image(150,150) %>
+              <% end %>
+            </td>
             <td><%= link_to book.title, book_path(book.id) %></td>
             <td><%= book.body%></td>
           </tr>

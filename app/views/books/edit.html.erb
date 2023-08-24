@@ -2,9 +2,33 @@
   <div class="row">
     <div class="col-sm-12 col-md-8 col-lg-5  mx-auto">
       <h1>Editing Book</h1>
+      <!--varidation-->
+      <% if @book.errors.any? %>
+        <%= @book.errors.count %>errors prohibited this book from being saved:
+          <ul>
+            <% @book.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+          <br>
+      <% end %>
 
       <!--更新-->
-      <%= render partial: 'form' %>
+      <%= form_with model: @book do |form| %>
+        <div class="form-group">
+          <%= form.label :title %><br>
+          <%= form.text_field :title %>
+        </div>
+
+        <div class="form-group">
+          <%= form.label :opinion %><br>
+          <%= form.text_area :body %>
+        </div>
+
+        <div class="form-group">
+          <%= form.submit 'Update Book', class: "btn btn-success" %>
+        </div>
+      <% end %>
 
       <div>
         <%= link_to 'Show', book_path %>  |
